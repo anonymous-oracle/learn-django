@@ -31,6 +31,9 @@
                 <a class="nav-item nav-link" href="{% url 'blog-home' %}">Home</a>
                 <!-- same as above with the /about route -->
                 <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
+                {% if settings.DEBUG %}
+                    <a class="nav-item nav-link" href="/admin">Admin</a>
+                {% endif %}
               </div>
               <!-- Navbar Right Side -->
               <div class="navbar-nav">
