@@ -19,6 +19,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('blog/', include('blog.urls')) # since this is the main project, any route which has 'blog/' in the route will be mapped to the root route of the blog project, so we include blog.urls in the url patterns to match the routing requests
+    # path('blog/', include('blog.urls')), # since this is the main project, any route which has 'blog/' in the route will be mapped to the root route of the blog project, so we include blog.urls in the url patterns to match the routing requests
     path('', include('blog.urls')) # routes all root URL requests to the blog app root routes relatively
 ]

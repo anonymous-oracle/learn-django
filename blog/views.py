@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from random import choice, shuffle
 
 # Create your views here.
 
@@ -32,4 +33,5 @@ def home(request):
 
 def about(request):
     # return HttpResponse('<h1>Blog About</h1>')
-    return render(request, 'blog/about.html')
+    shuffle(posts)
+    return render(request, 'blog/about.html', context={'title': choice(posts[:3] + [{}]).get('title')})
