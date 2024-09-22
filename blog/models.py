@@ -10,4 +10,5 @@ class Post(models.Model):
     date_posted = models.DateTimeField(default=timezone.now) # passing the function for execution when the object and the field is created
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 
-    
+    def __str__(self):
+        return f"{self.title} | created on {self.date_posted.strftime("%d-%m-%Y %H:%M:%S")} by {self.author.username}"
