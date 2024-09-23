@@ -34,6 +34,8 @@ INSTALLED_APPS = [
     'blog.apps.BlogConfig', # adds the config class for the blog app
     'users.apps.UsersConfig',
     'django.contrib.admin',
+    'crispy_forms', # added for form styling
+    'crispy_bootstrap5',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -123,3 +125,6 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap5' # specifies to use bootstrap 4 for css styling
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
