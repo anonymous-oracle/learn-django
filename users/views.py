@@ -17,3 +17,7 @@ def register(request: HttpRequest):
     else:
         form = UserRegisterForm()
     return render(request, 'users/register.html', {'form':form})
+
+# def logout(request: HttpRequest):
+#     if request.method.lower() in ['GET', 'POST']:
+#         return render(request, 'users/logout.html')

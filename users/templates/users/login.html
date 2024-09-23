@@ -2,7 +2,7 @@
 {% load crispy_forms_tags %}
 {% block content %}
 <div class="content-section">
-    <form method="GET">
+    <form method="POST">
         <!-- cross site request forward token -->
         {% csrf_token %} 
         <fieldset class="form-group">
@@ -13,7 +13,7 @@
 
         </fieldset>
         <div class="form-group">
-            <button class="btn btn-outline-info" type="submit">Sign Up</button>
+            <button class="btn btn-outline-info" type="submit">Login</button>
         </div>
     </form>
     <div class="border-top pt-3">
