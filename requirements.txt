@@ -1,0 +1,4 @@
+django
+pillow
+sqlparse
+django-crispy-forms
