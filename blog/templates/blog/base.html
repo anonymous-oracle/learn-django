@@ -38,6 +38,7 @@
               <!-- Navbar Right Side -->
               <div class="navbar-nav">
                 <a id="login-link" class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+                <a id="profile-link" class="nav-item nav-link" href="{% url 'users-profile' %}">Profile</a>
                 <a id="register-link" class="nav-item nav-link" href="{% url 'users-register' %}">Register</a>
                 <form method="POST" action="{% url 'logout' %}" id="logout-form">
                   {% csrf_token %}
@@ -46,6 +47,7 @@
               {% if not user.is_authenticated %}
                 <script>
                   document.getElementById('logout-form').remove();
+                  document.getElementById('profile-link').remove();
                 </script>
               {% else %}
                 <script>

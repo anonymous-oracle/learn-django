@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpRequest
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm
 
 # Create your views here.
@@ -18,6 +19,6 @@ def register(request: HttpRequest):
         form = UserRegisterForm()
     return render(request, 'users/register.html', {'form':form})
 
-# def logout(request: HttpRequest):
-#     if request.method.lower() in ['GET', 'POST']:
-#         return render(request, 'users/logout.html')
+@login_required # added so that the login page is shown to the user if at all the /profile route is accessed without authentication
+def profile(request):
+    return render(request, 'users/profile.html')
