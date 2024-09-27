@@ -1,3 +1,4 @@
+import os
 from django.shortcuts import render, redirect
 from django.http import HttpRequest
 from django.contrib import messages
@@ -24,14 +25,19 @@ def profile(request):
     if request.method.lower() == 'post':
         u_form = UserUpdateForm(request.POST, instance=request.user) # pass the current user instance to the form
         p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile) # request.POST sends the new data to be updated in user and user profile
+        old_image_path=request.user.profile.image.path
+        if os.path.exists(old_image_path):
+            os.remove(old_image_path) # removes the image
         if u_form.is_valid() and p_form.is_valid():
+            
             u_form.save()
             p_form.save()
             messages.success(request, "Your account details have been updated!")
             return redirect('users-profile')
     else:
         u_form = UserUpdateForm(instance=request.user) # returns a form prepopulated with the user's info
-        p_form = ProfileUpdateForm(instance=request.user.profile) 
+        p_form = ProfileUpdateForm(instance=request.user.profile)
+        
 
     context = {
         'u_form': u_form,
