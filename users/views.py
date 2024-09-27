@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpRequest
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .forms import UserRegisterForm
+from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 
 # Create your views here.
 def register(request: HttpRequest):
@@ -21,4 +21,20 @@ def register(request: HttpRequest):
 
 @login_required # added so that the login page is shown to the user if at all the /profile route is accessed without authentication
 def profile(request):
-    return render(request, 'users/profile.html')
+    if request.method.lower() == 'post':
+        u_form = UserUpdateForm(request.POST, instance=request.user) # pass the current user instance to the form
+        p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile) # request.POST sends the new data to be updated in user and user profile
+        if u_form.is_valid() and p_form.is_valid():
+            u_form.save()
+            p_form.save()
+            messages.success(request, "Your account details have been updated!")
+            return redirect('users-profile')
+    else:
+        u_form = UserUpdateForm(instance=request.user) # returns a form prepopulated with the user's info
+        p_form = ProfileUpdateForm(instance=request.user.profile) 
+
+    context = {
+        'u_form': u_form,
+        'p_form': p_form
+    }
+    return render(request, 'users/profile.html', context=context)

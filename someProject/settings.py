@@ -120,7 +120,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -132,5 +132,10 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 LOGIN_REDIRECT_URL = 'blog-home' # the url to which users are redirected to once they login
 LOGIN_URL = 'login' # required for login_required decorator so that it does not redirect to a default set login page in django 
 
+
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
