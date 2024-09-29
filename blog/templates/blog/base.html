@@ -38,16 +38,18 @@
               <!-- Navbar Right Side -->
               <div class="navbar-nav">
                 <a id="login-link" class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+                <a id="post-create-link" class="nav-item nav-link" href="{% url 'blog-post-create' %}">New Post</a>
                 <a id="profile-link" class="nav-item nav-link" href="{% url 'users-profile' %}">Profile</a>
                 <a id="register-link" class="nav-item nav-link" href="{% url 'users-register' %}">Register</a>
                 <form method="POST" action="{% url 'logout' %}" id="logout-form">
                   {% csrf_token %}
-                <button type="submit" class="btn btn-warning" id="logout-btn">Logout</button>
+                <button type="submit" class="btn btn-warning mt-1 mb-1" id="logout-btn">Logout</button>
               </form>
               {% if not user.is_authenticated %}
                 <script>
                   document.getElementById('logout-form').remove();
                   document.getElementById('profile-link').remove();
+                  document.getElementById('post-create-link').remove();
                 </script>
               {% else %}
                 <script>
