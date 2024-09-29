@@ -6,11 +6,7 @@
       <img class="rounded-circle article-img" src="{{post.author.profile.image.url}}" alt="">
         <div class="media-body">
           <div class="article-metadata">
-            {% if user != post.author %}
-                {{ post.author }}
-            {% else %}
-                <a class="mr-2" href="{% url 'users-profile' %}">{{ post.author }}</a>
-            {% endif %}
+            <a class="mr-2" href="{% url 'blog-user-posts' post.author.username %}">{{ post.author }}</a>
             <small class="text-muted">{{ post.date_posted|date:"d F, Y"}}</small>
           </div>
           <h4><a class="article-title" href="{% url 'blog-post-detail' post.id %}">{{ post.title }}</a></h4>

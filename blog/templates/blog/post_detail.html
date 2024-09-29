@@ -6,18 +6,15 @@
         <div class="media-body">
           <div class="article-metadata">
             <div class="article-metadata">
-                {% if user != object.author %}
-                    {{ object.author }}
-                {% else %}
-                    <a class="mr-2" href="{% url 'users-profile' %}">{{ object.author }}</a>
-                {% endif %}
-            <small class="text-muted">{{ object.date_posted|date:"d F, Y"}}</small>
-            {% if object.author == user %}
-                <div>
-                    <a href="{% url 'blog-post-update' object.id %}" class="btn btn-secondary btn-sm mt-1 mb-1">Update</a>
-                    <a href="{% url 'blog-post-delete' object.id %}" class="btn btn-danger btn-sm mt-1 mb-1">Delete</a>
-                </div>
-            {% endif %}
+              <a class="mr-2" href="{% url 'blog-user-posts' object.author.username %}">{{ object.author }}</a>
+              <small class="text-muted">{{ object.date_posted|date:"d F, Y"}}</small>
+              {% if object.author == user %}
+                  <div>
+                      <a href="{% url 'blog-post-update' object.id %}" class="btn btn-secondary btn-sm mt-1 mb-1">Update</a>
+                      <a href="{% url 'blog-post-delete' object.id %}" class="btn btn-danger btn-sm mt-1 mb-1">Delete</a>
+                  </div>
+              {% endif %}
+            </div>
           </div>
           <h2 class="article-title">{{ object.title }}</h2>
           <p class="article-content">{{ object.content }}</p>
