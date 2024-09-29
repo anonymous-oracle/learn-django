@@ -1,4 +1,6 @@
-from django.shortcuts import render
+from typing import Any
+from django.db.models.query import QuerySet
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from random import choice, shuffle
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -30,9 +32,24 @@ class PostListView(ListView):
 
     # <app>/<model>_<viewtype>.html
     template_name = 'blog/home.html' # points to the template that the class view must use
+
     context_object_name = 'posts' # the 'posts' variable is the context passed to the template where the data will be rendered; the View can look for this variable to render the data
+    
     # ordering = ['date_posted'] # oldest post first
     ordering = ['-date_posted'] # newest post first
+    
+    paginate_by = 5 # in the URL add ?page=2 to go to the next page
+
+class UserPostListView(ListView):
+    model = Post
+    # <app>/<model>_<viewtype>.html
+    template_name = 'blog/user_posts.html'
+    context_object_name = 'posts' 
+    paginate_by = 5
+
+    def get_queryset(self) -> QuerySet[Any]:
+        user = get_object_or_404(User, username=self.kwargs.get('username'))
+        return Post.objects.filter(author=user).order_by('-date_posted')
 
 class PostDetailView(DetailView):
     model = Post
