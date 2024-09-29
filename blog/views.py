@@ -43,7 +43,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
     fields = ['title', 'content'] # this will need post_form.html as the template
 
     def form_valid(self, form):
-        form.instance.author = self.request.user # the form being submitted belongs to the current logged in Author
+        form.instance.author = self.request.user # the form being submitted belongs to the current logged in Author, for LoginRequiredMixin
         return super().form_valid(form) # sets the author
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView): # make sure only the author of the post can update the post
