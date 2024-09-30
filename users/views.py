@@ -29,9 +29,10 @@ def profile(request):
         if os.path.exists(old_image_path):
             os.remove(old_image_path) # removes the image
         if u_form.is_valid() and p_form.is_valid():
-            
+            if p_form.files:
+                p_form.save() 
             u_form.save()
-            p_form.save()
+            
             messages.success(request, "Your account details have been updated!")
             return redirect('users-profile')
     else:
