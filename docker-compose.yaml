@@ -1,13 +1,13 @@
 services:
-  nginx:
-    build:
-      context: .
-      dockerfile: ./Dockerfile
-    container_name: nginx
-    networks:
-      - nginx-network
-    ports:
-      - "8080:80"
+  # nginx:
+  #   build:
+  #     context: .
+  #     dockerfile: ./Dockerfile
+  #   container_name: nginx
+  #   networks:
+  #     - nginx-network
+  #   ports:
+  #     - "8080:80"
   blog-project:
     build:
       context: .
