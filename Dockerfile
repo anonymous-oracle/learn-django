@@ -17,4 +17,4 @@ COPY ./deploy-with-apache/apache-conf/ports.conf /etc/apache2/ports.conf
 COPY ./deploy-with-apache/apache-conf/sites-enabled/000-default.conf /etc/apache2/sites-available/000-default.conf
 RUN service apache2 start
 EXPOSE 80/tcp
-EXPOSE 8000
+# EXPOSE 5000
