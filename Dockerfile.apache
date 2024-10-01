@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM httpd
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt update
 RUN apt-get update && apt-get -y upgrade
@@ -15,11 +15,7 @@ COPY ./blog-project /app
 WORKDIR /app
 RUN pip install -r requirements.txt --break-system-packages
 WORKDIR /
-EXPOSE 80
 
 COPY ./deploy-with-apache/apache-conf/ports.conf /etc/apache2/ports.conf
 COPY ./deploy-with-apache/apache-conf/sites-enabled/000-default.conf /etc/apache2/sites-enabled/000-default.conf
-RUN service apache2 start
-
-ENTRYPOINT ["tail"]
-CMD ["-f","/dev/null"]
+EXPOSE 80

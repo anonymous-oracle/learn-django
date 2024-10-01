@@ -8,17 +8,18 @@ services:
   #     - nginx-network
   #   ports:
   #     - "8080:80"
-  blog-project:
+  blog-app:
+    container_name: blog-app
     build:
       context: .
-      dockerfile: ./Dockerfile.app
+      dockerfile: ./Dockerfile.apache
     networks:
-      - nginx-network
+      - django-network
     ports:
       - "8000:80"
     env_file:
-      - ./.env
-
+      - blog-app.env
+    hostname: "blog-app.com"
 networks:
-  nginx-network:
+  django-network:
     driver: bridge
