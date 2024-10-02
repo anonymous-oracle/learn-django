@@ -13,6 +13,7 @@ services:
     build:
       context: .
       dockerfile: ./Dockerfile.app
+    # command: bash -c "cd /blog-app; python3 manage.py makemigrations && python3 manage.py migrate && python3 manage.py collectstatic --no-input && python3 manage.py runserver 0.0.0.0:8000"
     networks:
       - django-network
     ports:

@@ -9,7 +9,6 @@ RUN apt-get -y install apache2 apache2-utils libapache2-mod-wsgi-py3
 RUN apt-get -y install python3-full python3-pip lsof
 RUN apt-get -y upgrade
 RUN set -o vi
-RUN mkdir -p /var/www/websites
 
 COPY . /blog-app
 WORKDIR /blog-app
@@ -19,6 +18,9 @@ EXPOSE 80
 
 COPY ./deploy-with-apache/apache-conf/ports.conf /etc/apache2/ports.conf
 COPY ./deploy-with-apache/apache-conf/sites-enabled/000-default.conf /etc/apache2/sites-enabled/000-default.conf
+RUN a2enmod proxy_http
+RUN a2ensite 000-default.conf
+RUN service apache2 restart
 COPY ./startup.sh /startup.sh
 RUN chmod +x /startup.sh
 ENTRYPOINT [ "./startup.sh" ]

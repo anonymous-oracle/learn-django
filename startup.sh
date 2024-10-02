@@ -12,5 +12,11 @@ chmod -R 775 /blog-app/media
 chmod -R +x /blog-app/manage.py
 
 
+# systemctl reload apache2
 # service apache2 restart
 apache2ctl -D FOREGROUND
+
+
+cd /blog-app
+rm startup.sh
+# python3 manage.py makemigrations && python3 manage.py migrate && python3 manage.py collectstatic --no-input && python3 manage.py runserver 0.0.0.0:8000 &
