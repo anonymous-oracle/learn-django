@@ -13,7 +13,7 @@ RUN set -o vi
 COPY . /blog-app
 WORKDIR /blog-app
 RUN pip install -r requirements.txt --break-system-packages
-WORKDIR /
+# WORKDIR /
 EXPOSE 80
 
 COPY ./deploy-with-apache/apache-conf/ports.conf /etc/apache2/ports.conf
@@ -23,4 +23,4 @@ RUN a2ensite 000-default.conf
 RUN service apache2 restart
 COPY ./startup.sh /startup.sh
 RUN chmod +x /startup.sh
-ENTRYPOINT [ "./startup.sh" ]
+ENTRYPOINT [ "/startup.sh" ]
