@@ -10,7 +10,8 @@ chmod -R 775 /blog-app
 chown -R :www-data /blog-app/media
 chmod -R 775 /blog-app/media
 chmod -R +x /blog-app/manage.py
-
+chown -R :www-data /blog-app/someProject
+chmod -R 775 /blog-app/someProject
 
 # systemctl reload apache2
 # service apache2 restart
