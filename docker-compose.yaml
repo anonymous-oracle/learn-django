@@ -12,7 +12,7 @@ services:
     container_name: blog-app
     build:
       context: .
-      dockerfile: ./Dockerfile.apache
+      dockerfile: ./Dockerfile.app
     networks:
       - django-network
     ports:
