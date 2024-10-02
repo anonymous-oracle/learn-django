@@ -14,8 +14,6 @@ chown -R :www-data /blog-app/someProject
 chmod -R 775 /blog-app/someProject
 
 
-
-
 cd /blog-app
 rm ./startup.sh
 
